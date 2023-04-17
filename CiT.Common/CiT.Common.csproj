@@ -8,7 +8,6 @@
         <Authors>prplecake</Authors>
         <RepositoryUrl>https://github.com/CompostInTraining/CiT.Common</RepositoryUrl>
         <PackageProjectUrl>https://github.com/CompostInTraining/CiT.Common</PackageProjectUrl>
-        <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
     </PropertyGroup>
 
 </Project>
