@@ -1,5 +1,4 @@
-﻿using System;
-using CiT.Common.Attributes;
+﻿using CiT.Common.Attributes;
 
 namespace CiT.Common.Validations;
 
