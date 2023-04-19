@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace CiT.Common.Attributes;
+﻿namespace CiT.Common.Attributes;
 
 /// <summary>
 ///     Sets a configuration property to be required.
