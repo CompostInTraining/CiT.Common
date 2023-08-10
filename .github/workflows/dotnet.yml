@@ -26,6 +26,9 @@ jobs:
         uses: actions/setup-dotnet@v3
         with:
           dotnet-version: ${{ matrix.dotnet-version }}
+          source-url: https://nuget.pkg.github.com/CompostInTraining/index.json
+        env:
+          NUGET_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Restore dependencies
         run: dotnet restore
       - name: Build
