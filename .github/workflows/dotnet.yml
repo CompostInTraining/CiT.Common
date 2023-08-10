@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        dotnet-version: ['7.0.x' ]
+        dotnet-version: [ '7.0.x' ]
     steps:
       - uses: actions/checkout@v3
         with:
@@ -19,7 +19,7 @@ jobs:
       - uses: actions/cache@v3
         with:
           path: ~/.nuget/packages
-          key: ${{ runner.os }}-nuget-${{ hashFiles('**/packages.lock.json') }}
+          key: ${{ runner.os }}-nuget-${{ hashFiles('**/*.csproj') }}
           restore-keys: |
             ${{ runner.os }}-nuget-
       - name: Setup .NET
@@ -30,13 +30,16 @@ jobs:
         run: dotnet restore
       - name: Build
         run: dotnet build --no-restore
-
       - name: Test
         run: dotnet test --no-build --verbosity normal --logger "trx" --results-directory "./TestResults"
-
     #- uses: dorny/test-reporter@v1
     #  if: always()
     #  with:
     #    name: .NET Test Results
     #    path: TestResults/*.trx
     #    reporter: dotnet-trx
+      - name: Pack NuGet(s)
+        run: dotnet pack -c Release -o packages
+      - name: Upload NuGet(s)
+        if: ${{ github.event_name != 'pull_request' }}
+        run: dotnet nuget push packages/*.nupkg --skip-duplicate
