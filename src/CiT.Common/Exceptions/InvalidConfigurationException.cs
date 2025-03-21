@@ -2,6 +2,7 @@
 
 namespace CiT.Common.Exceptions;
 
+[Serializable]
 public class InvalidConfigurationException : Exception
 {
     public InvalidConfigurationException() { }
